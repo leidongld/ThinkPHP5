@@ -15,13 +15,13 @@ return [
     // 服务器地址
     'hostname'        => '127.0.0.1',
     // 数据库名
-    'database'        => '',
+    'database'        => 'zerg',
     // 用户名
     'username'        => 'root',
     // 密码
     'password'        => '',
     // 端口
-    'hostport'        => '',
+    'hostport'        => '3307',
     // 连接dsn
     'dsn'             => '',
     // 数据库连接参数
@@ -43,7 +43,7 @@ return [
     // 是否严格检查字段是否存在
     'fields_strict'   => true,
     // 数据集返回类型
-    'resultset_type'  => 'array',
+    'resultset_type'  => 'colection',
     // 自动写入时间戳字段
     'auto_timestamp'  => false,
     // 时间字段取出后的默认时间格式
