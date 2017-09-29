@@ -3,19 +3,20 @@
  * Created by PhpStorm.
  * User: leido
  * Date: 2017/9/18
- * Time: 15:00
+ * Time: 20:46
  */
 
 namespace app\lib\exception;
 
 
-class WeChatException extends BaseException{
+class UserException extends BaseException
+{
     //HTTP 状态码 400,200
-    public $code = 400;
+    public $code = 404;
 
     //错误信息
-    public $msg = '微信服务器接口调用失败';
+    public $msg = '用户不存在';
 
     //错误码
-    public $errorCode = 999;
+    public $errorCode = 60000;
 }

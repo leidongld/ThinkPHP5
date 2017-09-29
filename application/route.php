@@ -22,19 +22,43 @@
 
 use think\Route;
 
+//Banner
 Route::get('api/:version/banner/:id', 'api/:version.Banner/getBanner');
 
+//Theme
 Route::get('api/:version/theme', 'api/:version.Theme/getSimpleList');
 Route::get('api/:version/theme/:id', 'api/:version.Theme/getComplexOne');
 
-Route::get('api/:version/product/recent', 'api/:version.Product/getRecent');
-Route::get('api/:version/product/by_category', 'api/:version.Product/getAllInCategory');
-Route::get('api/:version/product/:id', 'api/:version.Product/getOne');
+//Product(2种写法)
+//Route::get('api/:version/product/recent', 'api/:version.Product/getRecent');
+//Route::get('api/:version/product/by_category', 'api/:version.Product/getAllInCategory');
+//Route::get('api/:version/product/:id', 'api/:version.Product/getOne', [], ['id '=> '\d+']);
+Route::group('api/:version/product', function (){
+    Route::get('/by_category', 'api/:version.Product/getAllInCategory');
+    Route::get('/recent', 'api/:version.Product/getRecent');
+    Route::get('/:id', 'api/:version.Product/getOne', [], ['id '=> '\d+']);
+});
 
+//Category
 Route::get('api/:version/category/all', 'api/:version.Category/getAllCategories');
 
-Route::get('api/:version/token/user', 'api/:version.Token/getToken');
+//Token
+Route::post('api/:version/token/user', 'api/:version.Token/getToken');
+Route::post('api/:version/token/app', 'api/:version.Token/getAppToken');
+Route::post('api/:version/token/verify', 'api/:version.Token/verifyToken');
 
+//Address
+Route::post('api/:version/address', 'api/:version.Address/createOrUpdateAddress');
+Route::get('api/:version/address', 'api/:version.Address/getUserAddress');
+
+//Order
+Route::post('api/:version/order', 'api/:version.Order/placeOrder');
+
+//Pay
+Route::post('api/:version/pay/pre_order', 'api/:version.Pay/getPreOrder');
+Route::post('api/:version/pay/notify', 'api/:version.Pay/receiveNotify');
+
+//Test
 Route::get('hello/:id', 'api/v1.Banner/showHello');
 
 

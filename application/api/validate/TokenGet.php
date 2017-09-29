@@ -11,11 +11,11 @@ namespace app\api\validate;
 
 class TokenGet extends BaseValidate
 {
-    public $rule = [
+    protected $rule = [
         'code' => 'require|isNotEmpty'
     ];
 
-    public $message = [
-        'code' => '没有Code还想获取'
+    protected $message = [
+        'code' => '没有Code还想获取Token'
     ];
 }

@@ -3,19 +3,20 @@
  * Created by PhpStorm.
  * User: leido
  * Date: 2017/9/18
- * Time: 15:00
+ * Time: 17:50
  */
 
 namespace app\lib\exception;
 
 
-class WeChatException extends BaseException{
+class TokenException extends BaseException
+{
     //HTTP 状态码 400,200
-    public $code = 400;
+    public $code = 401;
 
     //错误信息
-    public $msg = '微信服务器接口调用失败';
+    public $msg = 'Token已过期或无效';
 
     //错误码
-    public $errorCode = 999;
+    public $errorCode = 10001;
 }
