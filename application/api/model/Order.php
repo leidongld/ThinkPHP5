@@ -39,8 +39,9 @@ class Order extends BaseModel
         return $pagingData ;
     }
 
-    public static function getSummaryByPage($page=1, $size=20){
-        $pagingData = self::order('create_time desc')
+    public static function getSummaryByPage($uid, $page=1, $size=20){
+        $pagingData = self::where('user_id','=',$uid)
+            ->order('create_time desc')
             ->paginate($size, true, ['page' => $page]);
         return $pagingData ;
     }
@@ -48,5 +49,12 @@ class Order extends BaseModel
     public function products()
     {
         return $this->belongsToMany('Product', 'order_product', 'product_id', 'order_id');
+    }
+
+    public function getSnapItemAttr($value){
+        if(empty($value)){
+            return null;
+        }
+        return json_encode($value);
     }
 }

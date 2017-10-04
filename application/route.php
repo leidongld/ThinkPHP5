@@ -53,10 +53,13 @@ Route::get('api/:version/address', 'api/:version.Address/getUserAddress');
 
 //Order
 Route::post('api/:version/order', 'api/:version.Order/placeOrder');
+Route::get('api/:version/order/:id', 'api/:version.Order/getDetail',[], ['id'=>'\d+']);
+Route::get('api/:version/order/by_user', 'api/:version.Order/getSummaryByUser');
 
 //Pay
 Route::post('api/:version/pay/pre_order', 'api/:version.Pay/getPreOrder');
 Route::post('api/:version/pay/notify', 'api/:version.Pay/receiveNotify');
+Route::post('api/:version/pay/re_notify', 'api/:version.Pay//receiveNotify');
 
 //Test
 Route::get('hello/:id', 'api/v1.Banner/showHello');

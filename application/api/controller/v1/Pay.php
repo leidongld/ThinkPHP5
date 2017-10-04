@@ -10,6 +10,7 @@ namespace app\api\controller\v1;
 
 
 use app\api\controller\BaseController;
+use app\api\service\WxNotify;
 use app\api\validate\IDMustBePositiveInt;
 use app\api\service\Pay as PayService;
 
@@ -33,5 +34,9 @@ class Pay extends BaseController
         //3.减库存
         //如果成功处理，返回成功的通知，否则返回失败通知
         //特点：post
+        $notify = new WxNotify();
+        $notify->Handle();
+//        $xmlData = file_get_contents('php://input');
+//        $result = curl_post_raw('http://leidong.cn/api/v1/pay/re_notify?');
     }
 }

@@ -18,15 +18,15 @@ class Theme
 {
     /**
      * @url /theme?ids=id1,id2......
-     * @return 一组theme模型
+     * @return 一组theme模型|false|\PDOStatement|string|\think\Collection
      */
     public function getSimpleList($ids=''){
         (new IdConnection())->goCheck();
         $ids = explode(',', $ids);
         $result = ThemeModel::with('topicImg,headImg')
             ->select($ids);
-        if($result->isEmpty()){
-            new ThemeException();
+        if(!$result){
+            throw new ThemeException();
         }
         return $result;
     }
