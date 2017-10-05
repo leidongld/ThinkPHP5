@@ -48,4 +48,9 @@ class Product extends BaseModel
     public function imgs(){
         return $this->hasMany('ProductImage', 'product_id', 'id');
     }
+
+    public function getMainImgUrlAttr($value, $data)
+    {
+        return $this->prefixImgUrl($value, $data);
+    }
 }

@@ -8,13 +8,18 @@
 
 namespace app\api\controller\v1;
 
+use app\api\controller\BaseController;
 use app\api\model\Product as ProductModel;
 use app\api\validate\Count;
 use app\api\validate\IDMustBePositiveInt;
 use app\lib\exception\ProductException;
 
-class Product
+class Product extends BaseController
 {
+    protected $beforeActionList = [
+        'checkSuperScope' => ['only' => 'createOne,deleteOne']
+    ];
+
     public function getRecent($count=15){
         (new Count())->goCheck();
         $product =  ProductModel::getMostRecent($count);
@@ -22,18 +27,20 @@ class Product
             throw new ProductException();
         }
         $collection = collection($product);
-        $product = $collection->hidden(['summary']);
+        $product = $collection->hidden(['summary'])->toArray();
         return $product;
     }
 
-    public function getAllInCategory($id){
+    public function getAllInCategory($id=-1){
         (new IDMustBePositiveInt())->goCheck();
         $products = ProductModel::getProductsByCcategoryID($id);
         if(!$products){
             throw new ProductException();
         }
-        //$products = $products->hidden(['summary']);
-        return $products;
+        $data = $products;
+//            ->hidden(['summary'])
+            //->toArray();
+        return $data;
     }
 
     public function getOne($id){
@@ -46,6 +53,6 @@ class Product
     }
 
     public function deleteOne($id){
-
+        ProductModel::destroy($id);
     }
 }

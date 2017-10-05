@@ -17,7 +17,9 @@ use app\api\service\Pay as PayService;
 class Pay extends BaseController
 {
     protected $beforeActionList = [
-        'checkExclusiveScope' => ['only' => 'getPreOrder']
+        'checkExclusiveScope' => ['only' => 'getPreOrder'],
+        'checkPrimaryScope' => ['only' => 'getDetail,getSummaryByUser'],
+        'checkSuperScope' => ['only' => 'delivery,getSummary']
     ];
 
     public function getPreOrder($id=''){

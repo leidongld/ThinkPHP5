@@ -33,11 +33,17 @@ Route::get('api/:version/theme/:id', 'api/:version.Theme/getComplexOne');
 //Route::get('api/:version/product/recent', 'api/:version.Product/getRecent');
 //Route::get('api/:version/product/by_category', 'api/:version.Product/getAllInCategory');
 //Route::get('api/:version/product/:id', 'api/:version.Product/getOne', [], ['id '=> '\d+']);
-Route::group('api/:version/product', function (){
-    Route::get('/by_category', 'api/:version.Product/getAllInCategory');
-    Route::get('/recent', 'api/:version.Product/getRecent');
-    Route::get('/:id', 'api/:version.Product/getOne', [], ['id '=> '\d+']);
-});
+//Route::group('api/:version/product', function (){
+//    Route::get('/by_category', 'api/:version.Product/getAllInCategory');
+//    Route::get('/recent', 'api/:version.Product/getRecent');
+//    Route::get('/                                                                                       :id', 'api/:version.Product/getOne', [], ['id '=> '\d+']);
+//});
+Route::post('api/:version/product', 'api/:version.Product/createOne');
+Route::delete('api/:version/product/:id', 'api/:version.Product/deleteOne');
+Route::get('api/:version/product/by_category/paginate', 'api/:version.Product/getByCategory');
+Route::get('api/:version/product/by_category', 'api/:version.Product/getAllInCategory');
+Route::get('api/:version/product/:id', 'api/:version.Product/getOne',[],['id'=>'\d+']);
+Route::get('api/:version/product/recent', 'api/:version.Product/getRecent');
 
 //Category
 Route::get('api/:version/category/all', 'api/:version.Category/getAllCategories');

@@ -9,12 +9,13 @@
 namespace app\api\controller\v1;
 
 
+use app\api\controller\BaseController;
 use app\api\validate\IdConnection;
 use app\api\model\Theme as ThemeModel;
 use app\api\validate\IDMustBePositiveInt;
 use app\lib\exception\ThemeException;
 
-class Theme
+class Theme extends BaseController
 {
     /**
      * @url /theme?ids=id1,id2......
