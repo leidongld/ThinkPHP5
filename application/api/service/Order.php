@@ -203,6 +203,7 @@ class Order
             'haveStock' => false,
             'count' => 0,
             'name' => '',
+            'price' => 0,
             'totalPrice' => 0
         ];
 
@@ -221,7 +222,10 @@ class Order
             $product = $products[$pIndex];
             $pStatus['id'] = $product['id'];
             $pStatus['name'] = $product['name'];
-            $pStatus['count'] = $oCount;
+            //$pStatus['count'] = $oCount;
+            $pStatus['counts'] = $oCount;
+            $pStatus['price'] = $product['price'];
+            $pStatus['main_img_url'] = $product['main_img_url'];
             $pStatus['totalPrice'] = $product['price'] * $oCount;
             if($product['stock'] - $oCount >= 0){
                 $pStatus['haveStock'] = true;
